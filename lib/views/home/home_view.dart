@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
   var wifiIP;
   var wifiName;
 
-  Future? setup() async {
+  Future setup() async {
     await getPermissions();
     wifiBSSID = await WifiInfo().getWifiBSSID();
     wifiIP = await WifiInfo().getWifiIP();
@@ -36,10 +36,8 @@ class HomeView extends StatelessWidget {
                   wifiInfoController.updateWifiName(context, wifiName);
                   wifiInfoController.updateWifiIP(context, wifiIP);
                   wifiInfoController.updateWifiBSSID(context, wifiBSSID);
-                  Future.delayed(Duration(seconds: 1), () {
-                    return Navigator.of(context)
-                        .pushNamed(WifiInfoView.routeName);
-                  });
+
+                  Navigator.of(context).pushNamed(WifiInfoView.routeName);
                 },
                 child: Text('Add Devices')),
             ElevatedButton(onPressed: null, child: Text('Configure Devices'))

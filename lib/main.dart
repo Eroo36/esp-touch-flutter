@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wifi/components/esp_touch_smartconfig.dart';
 import 'package:wifi/views/home/home_view.dart';
 import 'package:wifi/views/wifi_info/components/wifi_info_list.dart';
 import 'helpers/permissions.dart';
@@ -25,7 +26,11 @@ class MyApp extends StatelessWidget {
           title: '',
           theme: myTheme,
           home: HomeView(),
-          routes: {WifiInfoView.routeName: (context) => WifiInfoView()},
+          routes: {
+            WifiInfoView.routeName: (context) => WifiInfoView(),
+            EspTouchSmartConfigWidget.routeName: (context) =>
+                EspTouchSmartConfigWidget(),
+          },
         ));
   }
 }

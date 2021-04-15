@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:permission_handler/permission_handler.dart';
 
-Future<String?> getPermissions() async {
+Future getPermissions() async {
   if (Platform.isAndroid) {
     var status = await Permission.location.status;
     if (status.isDenied || status.isRestricted) {
