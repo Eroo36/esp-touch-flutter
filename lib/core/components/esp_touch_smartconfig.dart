@@ -3,25 +3,14 @@ import 'package:esptouch_smartconfig/esp_touch_result.dart';
 import 'package:esptouch_smartconfig/esptouch_smartconfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wifi/models/wifi_info/wifi_info_model.dart';
+
+import '../core_shelf.dart';
 
 class EspTouchSmartConfigWidget extends StatefulWidget {
   static const routeName = '/esp-touch';
-  // final String? ssid;
-  // final String? bssid;
-  // final String? password;
-  // final String? deviceCount;
-  // final bool? isBroadcast;
-  // final bool startConnection;
 
   const EspTouchSmartConfigWidget({
     Key? key,
-    // this.ssid,
-    // this.bssid,
-    // this.password,
-    // this.isBroadcast,
-    // this.deviceCount,
-    // required this.startConnection
   }) : super(key: key);
   @override
   _EspTouchSmartConfigWidgetState createState() =>

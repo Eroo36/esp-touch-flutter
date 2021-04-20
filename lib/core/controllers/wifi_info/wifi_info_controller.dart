@@ -3,24 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import model
 
-import '../../models/wifi_info/wifi_info_model.dart';
+import '../../core_shelf.dart';
 
 class WifiInfoController {
   WifiInfoController();
 
-  void updateWifiName(BuildContext context, String? wifiName) {
+  void updateWifiInfo(BuildContext context, String? wifiName, String? wifiBSSID,
+      String? wifiIP) {
     var viewModel = Provider.of<WifiInfoModel>(context, listen: false);
-    viewModel.setWifiName(wifiName);
-  }
-
-  void updateWifiBSSID(BuildContext context, String? wifiBSSID) {
-    var viewModel = Provider.of<WifiInfoModel>(context, listen: false);
-    viewModel.setWifiBSSID(wifiBSSID);
-  }
-
-  void updateWifiIP(BuildContext context, String? wifiIP) {
-    var viewModel = Provider.of<WifiInfoModel>(context, listen: false);
-    viewModel.setWifiIP(wifiIP);
+    viewModel.setWifiInfo(wifiName, wifiBSSID, wifiIP);
   }
 
   void updateWifiPassword(BuildContext context, String wifiPassword) {

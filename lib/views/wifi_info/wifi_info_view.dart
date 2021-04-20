@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wifi/components/esp_touch.dart';
-import 'package:wifi/components/esp_touch_smartconfig.dart';
-// import model
-import 'package:wifi/models/wifi_info/wifi_info_model.dart';
 // import controller
-import 'package:wifi/controllers/wifi_info/wifi_info_controller.dart';
+// import '../../core/controllers/wifi_info/wifi_info_controller.dart';
+// import model
+import '../../core/models/wifi_info/wifi_info_model.dart';
 import 'package:wifi/views/wifi_info/components/wifi_info_list.dart';
+
+// import '../../core/components/esp_touch.dart';
+import '../../core/components/esp_touch_smartconfig.dart';
 
 class WifiInfoView extends StatefulWidget {
   static const routeName = '/wifi-info';
@@ -29,7 +30,7 @@ class _WifiInfoViewState extends State<WifiInfoView> {
             wifiInfoModel.wifiBSSID,
             wifiInfoModel.wifiIP
           ];
-          var startConnection = false;
+          // var startConnection = false;
           return Column(
             children: [
               WifiInfoList(

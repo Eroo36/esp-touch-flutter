@@ -17,17 +17,9 @@ class WifiInfoModel extends ChangeNotifier {
 
   // ESPTouchPacket get packet => _packet;
 
-  void setWifiName(String? wifiName) {
+  void setWifiInfo(String? wifiName, String? wifiBSSID, String? wifiIP) {
     _wifiName = wifiName;
-    notifyListeners();
-  }
-
-  void setWifiBSSID(String? wifiBSSID) {
     _wifiBSSID = wifiBSSID;
-    notifyListeners();
-  }
-
-  void setWifiIP(String? wifiIP) {
     _wifiIP = wifiIP;
     notifyListeners();
   }

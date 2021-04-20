@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:wifi/controllers/wifi_info/wifi_info_controller.dart';
-import 'package:wifi/helpers/permissions.dart';
-import 'package:wifi/views/wifi_info/wifi_info_view.dart';
+import '../../core/controllers/wifi_info/wifi_info_controller.dart';
+import '../../core/helpers/permissions.dart';
+import '../wifi_info/wifi_info_view.dart';
 import 'package:wifi_info_flutter/wifi_info_flutter.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   static const routeName = '/';
 
-  var wifiBSSID;
-  var wifiIP;
-  var wifiName;
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  var _wifiBSSID;
+  var _wifiIP;
+  var _wifiName;
 
   Future setup() async {
     await getPermissions();
-    wifiBSSID = await WifiInfo().getWifiBSSID();
-    wifiIP = await WifiInfo().getWifiIP();
-    wifiName = await WifiInfo().getWifiName();
+    _wifiBSSID = await WifiInfo().getWifiBSSID();
+    _wifiIP = await WifiInfo().getWifiIP();
+    _wifiName = await WifiInfo().getWifiName();
   }
 
   @override
@@ -33,10 +38,8 @@ class HomeView extends StatelessWidget {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  wifiInfoController.updateWifiName(context, wifiName);
-                  wifiInfoController.updateWifiIP(context, wifiIP);
-                  wifiInfoController.updateWifiBSSID(context, wifiBSSID);
-
+                  wifiInfoController.updateWifiInfo(
+                      context, _wifiName, _wifiBSSID, _wifiIP);
                   Navigator.of(context).pushNamed(WifiInfoView.routeName);
                 },
                 child: Text('Add Devices')),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wifi/controllers/wifi_info/wifi_info_controller.dart';
-import 'package:wifi/models/wifi_info/wifi_info_model.dart';
+import '../../../core/controllers/wifi_info/wifi_info_controller.dart';
 
 class WifiInfoList extends StatelessWidget {
   final List<String?>? wifiInfoList;
