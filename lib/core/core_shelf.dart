@@ -1,5 +1,5 @@
-export './components/esp_touch.dart';
-export './components/esp_touch_smartconfig.dart';
+export './widgets/esp_touch.dart';
+export './widgets/esp_touch_smartconfig.dart';
 export './controllers/wifi_info/wifi_info_controller.dart';
 export './helpers/permissions.dart';
 export './helpers/theme.dart';

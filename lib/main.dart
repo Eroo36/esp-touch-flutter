@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'core/components/esp_touch_smartconfig.dart';
+import 'core/widgets/esp_touch_smartconfig.dart';
 import 'views/home/home_view.dart';
 import 'core/helpers/permissions.dart';
 import 'core/models/wifi_info/wifi_info_model.dart';

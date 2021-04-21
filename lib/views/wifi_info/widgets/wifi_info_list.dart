@@ -4,7 +4,7 @@ import '../../../core/controllers/wifi_info/wifi_info_controller.dart';
 class WifiInfoList extends StatelessWidget {
   final List<String?>? wifiInfoList;
 
-  const WifiInfoList({Key? key, this.wifiInfoList}) : super(key: key);
+  WifiInfoList({Key? key, this.wifiInfoList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

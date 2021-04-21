@@ -43,7 +43,11 @@ class _HomeViewState extends State<HomeView> {
                   Navigator.of(context).pushNamed(WifiInfoView.routeName);
                 },
                 child: Text('Add Devices')),
-            ElevatedButton(onPressed: null, child: Text('Configure Devices'))
+            ElevatedButton(
+                onPressed: () async {
+                  await getPermissions();
+                },
+                child: Text('Configure Devices'))
           ],
         ),
       ),

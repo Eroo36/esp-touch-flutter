@@ -4,19 +4,14 @@ import 'package:provider/provider.dart';
 // import '../../core/controllers/wifi_info/wifi_info_controller.dart';
 // import model
 import '../../core/models/wifi_info/wifi_info_model.dart';
-import 'package:wifi/views/wifi_info/components/wifi_info_list.dart';
+import 'widgets/wifi_info_list.dart';
 
-// import '../../core/components/esp_touch.dart';
-import '../../core/components/esp_touch_smartconfig.dart';
+// import '../../core/widgets/esp_touch.dart';
+import '../../core/widgets/esp_touch_smartconfig.dart';
 
-class WifiInfoView extends StatefulWidget {
+class WifiInfoView extends StatelessWidget {
   static const routeName = '/wifi-info';
 
-  @override
-  _WifiInfoViewState createState() => _WifiInfoViewState();
-}
-
-class _WifiInfoViewState extends State<WifiInfoView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +38,7 @@ class _WifiInfoViewState extends State<WifiInfoView> {
               //     packet: wifiInfoModel.packet)
               ElevatedButton(
                   onPressed: () {
+                    FocusScope.of(context).unfocus();
                     Navigator.of(context)
                         .pushNamed(EspTouchSmartConfigWidget.routeName);
                   },

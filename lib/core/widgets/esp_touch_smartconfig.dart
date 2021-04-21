@@ -20,8 +20,20 @@ class EspTouchSmartConfigWidget extends StatefulWidget {
 class _EspTouchSmartConfigWidgetState extends State<EspTouchSmartConfigWidget> {
   late Stream<ESPTouchResult>? _stream;
 
+  void retryLoad() {
+    var wifiInfoModel = Provider.of<WifiInfoModel>(context, listen: false);
+    setState(() {
+      _stream = EsptouchSmartconfig.run(
+          wifiInfoModel.wifiName!,
+          wifiInfoModel.wifiBSSID!,
+          wifiInfoModel.password,
+          '1',
+          wifiInfoModel.isBroadcast!);
+    });
+  }
+
   @override
-  void initState() {
+  Widget build(BuildContext context) {
     var wifiInfoModel = Provider.of<WifiInfoModel>(context, listen: false);
     _stream = EsptouchSmartconfig.run(
         wifiInfoModel.wifiName!,
@@ -29,11 +41,7 @@ class _EspTouchSmartConfigWidgetState extends State<EspTouchSmartConfigWidget> {
         wifiInfoModel.password,
         '1',
         wifiInfoModel.isBroadcast!);
-    super.initState();
-  }
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Logs'),
@@ -45,39 +53,53 @@ class _EspTouchSmartConfigWidgetState extends State<EspTouchSmartConfigWidget> {
               if (snapshot.hasError) {
                 // return error(context, 'Error in StreamBuilder');
                 print('haserror');
-                return Container();
+                return Container(
+                  padding: const EdgeInsets.all(20),
+                  child: Text('Error: ${snapshot.hasError}'),
+                );
               }
               switch (snapshot.connectionState) {
                 case ConnectionState.active:
                   print('active : ' + snapshot.data.toString());
-                  return Container(
-                    child: Text(snapshot.data.toString()),
-                  );
+                  return statusBox('active : ', snapshot);
                 case ConnectionState.none:
                   print('nonoe');
-                  return Container(
-                    child: Text(snapshot.data.toString()),
-                  );
+                  return statusBox('none', snapshot);
                 case ConnectionState.done:
                   if (snapshot.hasData) {
                     print('done has data: ' + snapshot.data.toString());
-                    return Container(
-                      child: Text(snapshot.data.toString()),
-                    );
+                    return statusBox('done has data: ', snapshot);
                   } else {
-                    print('done no data');
-                    return Container(
-                      child: Text(snapshot.data.toString()),
+                    print('done no data / timed out');
+                    return Column(
+                      children: [
+                        statusBox('done no data / timed out', snapshot),
+                        Center(
+                            child: ElevatedButton(
+                                onPressed: retryLoad, child: Text('Retry')))
+                      ],
                     );
                   }
                 case ConnectionState.waiting:
-                  print('waiting: ' + snapshot.data.toString());
-                  return Container(
-                    child: Text(snapshot.data.toString()),
+                  print('waiting');
+                  return Column(
+                    children: [
+                      statusBox('waiting ', snapshot),
+                      Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    ],
                   );
               }
             }),
       ),
     );
   }
+}
+
+Widget statusBox(String? title, AsyncSnapshot<ESPTouchResult> snapshot) {
+  return Container(
+    padding: const EdgeInsets.all(20),
+    child: Text('Connection state: $title ${snapshot.data ?? ''.toString()}'),
+  );
 }
